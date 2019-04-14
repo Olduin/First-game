@@ -1,0 +1,52 @@
+program stopgame;
+uses crt, system;
+   type 
+    controlGame=(run,stop,exit);
+    timing = dateTime;
+  var GameState:controlGame; 
+   tmnow,tmout,period:timing;
+   count:integer;
+  procedure konez;
+
+
+  var
+  ch:char;
+begin
+   
+      begin
+      ch := readkey;
+      case ch  of
+      #27:  GameState := controlGame.exit;
+      end;
+      end;
+end;
+     
+      
+begin
+ GameState  := controlGame.run;
+  while GameState <> controlGame.exit do
+  konez;
+   
+   
+
+while GameState = controlGame.exit do //Не уверен, что здесь нужно писать
+  begin
+  tmnow := DateTime.Now;
+  tmout := tmnow.AddMilliseconds(3000); //временно) 
+    period := tmout.Subtract(tmnow);
+  if tmnow < tmout then 
+    begin
+    delay(100);
+    count:=count+1;
+    gotoxy(1,21);
+  write(count);
+  end else
+    begin
+    count:=count+1;
+    gotoxy(21,1);
+    write(count);
+    end;
+    end;
+
+
+end.
